@@ -42,11 +42,11 @@ namespace Sirius.Messaging.SqlCe
     
         #region ObjectSet Properties
     
-        public ObjectSet<Queue> Queues
+        public ObjectSet<Message> Messages
         {
-            get { return _queues  ?? (_queues = CreateObjectSet<Queue>("Queues")); }
+            get { return _messages  ?? (_messages = CreateObjectSet<Message>("Messages")); }
         }
-        private ObjectSet<Queue> _queues;
+        private ObjectSet<Message> _messages;
 
         #endregion
     }
