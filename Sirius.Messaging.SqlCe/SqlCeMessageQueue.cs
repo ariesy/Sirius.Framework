@@ -13,8 +13,18 @@ namespace Sirius.Messaging.SqlCe
         {
             using (var context = new MessageQueueEntities())
             {
-                context.Messages.AddObject(new Message{Value = item.ToStringEx(),Status = MessageStatus.New});
+                var message = new Message();
+                long maxId = 0;
+                if (context.Messages.Count() > 0)
+                {
+                    maxId = context.Messages.Max(m => m.Id);
+                }
+                message.Id = maxId + 1;
+                message.Value = item.ToStringEx();
+                message.Status = MessageStatus.New;
+                context.Messages.AddObject(message);
                 context.SaveChanges();
+                
             }
             
             return true;

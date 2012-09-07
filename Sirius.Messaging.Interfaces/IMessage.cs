@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Sirius.Messaging.Interfaces
 {
-    public interface IMessageQueueServer
+    public interface IMessage
     {
-        void Start();
+        object MessageBody { get; set; }
 
-        event Action<List<IMessage>> ItemsEnqued;
+        string Status { get; set; }
     }
 }

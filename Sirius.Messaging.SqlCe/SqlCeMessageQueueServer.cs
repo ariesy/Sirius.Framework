@@ -5,7 +5,7 @@ using System.Text;
 using System.Configuration;
 using Sirius.Messaging.Interfaces;
 using Sirius.Common.Extensions;
-using System.Threading;
+using System.Timers;
 
 namespace Sirius.Messaging.SqlCe
 {
@@ -13,29 +13,32 @@ namespace Sirius.Messaging.SqlCe
     {
         public void Start()
         {
-            int scanInterval = ConfigurationManager.AppSettings["scanInterval"].ToInt(10);
-            while (true)
+            int scanInterval = ConfigurationManager.AppSettings["MessageQueueScanInterval"].ToInt(10);
+            Timer timer = new Timer(1000 * scanInterval);
+            timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            using (var context = new MessageQueueEntities())
             {
-                using (var context = new MessageQueueEntities())
+                var newMessages = context.Messages.Where(m => m.Status == MessageStatus.New).ToList();
+                if (newMessages.Count > 0 && ItemsEnqued != null)
                 {
-                    var newMessages = context.Messages.Where(m => m.Status == MessageStatus.New).ToList();
-                    if (newMessages.Count > 0 && ItemsEnqued != null)
-                    {
-                        ItemsEnqued(newMessages.Select(m => m.Value as object).ToList());
-                    }
-
-                    foreach (var message in newMessages)
-                    {
-                        message.Status = MessageStatus.Scaned;
-                    }
-
-                    context.SaveChanges();
+                    ItemsEnqued(context.Messages.ToList().Cast<IMessage>().ToList());
                 }
 
-                Thread.Sleep(1000 * scanInterval);
+                foreach (var message in newMessages)
+                {
+                    message.Status = MessageStatus.Scaned;
+                }
+
+                context.SaveChanges();
             }
         }
 
-        public event Action<List<object>> ItemsEnqued;
+        public event Action<List<IMessage>> ItemsEnqued;
     }
 }

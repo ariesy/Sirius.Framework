@@ -78,23 +78,22 @@
       <DependentUpon>MessageQueue.edmx</DependentUpon>
     </Compile>
     <Compile Include="MessageStatus.cs" />
+    <Compile Include="PartialClasses\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlCeMessageQueue.cs" />
     <Compile Include="SqlCeMessageQueueServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MessageQueue.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="MessageQueue.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MessageQueue.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="MessageQueue.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MessageQueue.Context.cs</LastGenOutput>

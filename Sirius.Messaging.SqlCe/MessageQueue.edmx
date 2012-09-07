@@ -12,40 +12,36 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="Value" Type="nvarchar" />
           <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MessageQueueModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="MessageQueueEntities" annotation:LazyLoadingEnabled="true" >
+        <EntityContainer Name="MessageQueueEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Messages" EntityType="MessageQueueModel.Message" />
         </EntityContainer>
         <EntityType Name="Message">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Value" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Type="Int64" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Value" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Status" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MessageQueueModelStoreContainer" CdmEntityContainer="MessageQueueEntities" >
-        <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="MessageQueueModel.Message">
-              <MappingFragment StoreEntitySet="Message">
-                <ScalarProperty Name="Status" ColumnName="Status" />
+        <EntityContainerMapping StorageEntityContainer="MessageQueueModelStoreContainer" CdmEntityContainer="MessageQueueEntities">
+          <EntitySetMapping Name="Messages"><EntityTypeMapping TypeName="MessageQueueModel.Message"><MappingFragment StoreEntitySet="Message">
+            <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+            <ScalarProperty Name="Status" ColumnName="Status" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -67,8 +63,8 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" >
-        <EntityTypeShape EntityType="MessageQueueModel.Message" Width="1.5" PointX="3.375" PointY="0.75" Height="1.5879931640624996" />
+      <Diagram Name="MessageQueue">
+        <EntityTypeShape EntityType="MessageQueueModel.Message" Width="1.5" PointX="0.75" PointY="0.75" Height="1.3969734700520831" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

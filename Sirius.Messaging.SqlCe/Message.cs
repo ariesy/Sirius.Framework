@@ -19,12 +19,6 @@ namespace Sirius.Messaging.SqlCe
     {
         #region Primitive Properties
     
-        public virtual long Id
-        {
-            get;
-            set;
-        }
-    
         public virtual string Value
         {
             get;
@@ -32,6 +26,12 @@ namespace Sirius.Messaging.SqlCe
         }
     
         public virtual string Status
+        {
+            get;
+            set;
+        }
+    
+        public virtual long Id
         {
             get;
             set;
