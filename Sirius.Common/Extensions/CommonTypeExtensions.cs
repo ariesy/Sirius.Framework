@@ -18,7 +18,7 @@ namespace Sirius.Common.Extensions
             return defaultValue;
         }
 
-        public static string ToStringEx(this object obj, bool trim = false)
+        public static string ToStringEx(this object obj, bool trim = true)
         {
             string result = string.Empty;
             if (obj == null)
