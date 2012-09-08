@@ -5,7 +5,7 @@ using System.Text;
 using Sirius.Messaging.Interfaces;
 using Sirius.Common.Extensions;
 
-namespace Sirius.Messaging.SqlCe
+namespace Sirius.Messaging.Data.SqlCe
 {
     public partial class Message : IMessage
     {

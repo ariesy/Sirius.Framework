@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C8E43152-4223-44A1-991D-02B9EA655E64}</ProjectGuid>
+    <ProjectGuid>{D3230EDE-4A93-4054-B8F4-72DAC86D0C1A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sirius.Messaging.Interfaces</RootNamespace>
-    <AssemblyName>Sirius.Messaging.Interfaces</AssemblyName>
+    <RootNamespace>Sirius.Messaging</RootNamespace>
+    <AssemblyName>Sirius.Messaging</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,13 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonMessage.cs" />
-    <Compile Include="IMessage.cs" />
-    <Compile Include="IMessageQueue.cs" />
-    <Compile Include="IMessageQueueServer.cs" />
-    <Compile Include="MessageQueueEventArgs.cs" />
-    <Compile Include="MessageStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MessageQueueServer.cs" />
+    <Compile Include="MessageQueue.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sirius.Common\Sirius.Common.csproj">
+      <Project>{EDA71828-B087-478C-B5FB-E51087E72883}</Project>
+      <Name>Sirius.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sirius.Messaging.Data.Interfaces\Sirius.Messaging.Data.Interfaces.csproj">
+      <Project>{BCAC4A97-94B3-48EA-8B3E-D2C75F34037F}</Project>
+      <Name>Sirius.Messaging.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sirius.Messaging.Interfaces\Sirius.Messaging.Interfaces.csproj">
+      <Project>{C8E43152-4223-44A1-991D-02B9EA655E64}</Project>
+      <Name>Sirius.Messaging.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

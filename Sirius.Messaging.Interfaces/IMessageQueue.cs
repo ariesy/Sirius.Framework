@@ -7,9 +7,9 @@ namespace Sirius.Messaging.Interfaces
 {
     public interface IMessageQueue
     {
-        bool Enqueue(object item);
+        bool Enqueue(IMessage message);
 
-        bool Dequeue(object item);
+        bool Dequeue(IMessage message);
 
     }
 }

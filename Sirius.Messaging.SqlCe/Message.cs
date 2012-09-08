@@ -13,11 +13,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace Sirius.Messaging.SqlCe
+namespace Sirius.Messaging.Data.SqlCe
 {
     public partial class Message
     {
         #region Primitive Properties
+    
+        public virtual long Id
+        {
+            get;
+            set;
+        }
     
         public virtual string Value
         {
@@ -26,12 +32,6 @@ namespace Sirius.Messaging.SqlCe
         }
     
         public virtual string Status
-        {
-            get;
-            set;
-        }
-    
-        public virtual long Id
         {
             get;
             set;

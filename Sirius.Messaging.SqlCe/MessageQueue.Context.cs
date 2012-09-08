@@ -11,7 +11,7 @@ using System;
 using System.Data.Objects;
 using System.Data.EntityClient;
 
-namespace Sirius.Messaging.SqlCe
+namespace Sirius.Messaging.Data.SqlCe
 {
     public partial class MessageQueueEntities : ObjectContext
     {

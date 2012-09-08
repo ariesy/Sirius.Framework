@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sirius.Messaging.SqlCe
+namespace Sirius.Messaging.Interfaces
 {
     public static class MessageStatus
     {

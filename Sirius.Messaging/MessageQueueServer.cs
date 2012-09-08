@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using Sirius.Messaging.Data.Interfaces;
 using Sirius.Messaging.Interfaces;
 using Sirius.Common.Extensions;
+using Sirius.Common.Ioc;
 using System.Timers;
 
-namespace Sirius.Messaging.SqlCe
+namespace Sirius.Messaging
 {
-    public class SqlCeMessageQueueServer : IMessageQueueServer
+    public class MessageQueueServer : IMessageQueueServer
     {
+        private IMessageDataService _messageDataService;
+
+        public MessageQueueServer()
+        {
+            _messageDataService = IocContainer.Current.Resolve<IMessageDataService>();
+        }
+        
         public void Start()
         {
             int scanInterval = ConfigurationManager.AppSettings["MessageQueueScanInterval"].ToInt(10);
@@ -22,21 +31,12 @@ namespace Sirius.Messaging.SqlCe
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            using (var context = new MessageQueueEntities())
+            if (ItemsEnqued != null)
             {
-                var newMessages = context.Messages.Where(m => m.Status == MessageStatus.New).ToList();
-                if (newMessages.Count > 0 && ItemsEnqued != null)
-                {
-                    ItemsEnqued(context.Messages.ToList().Cast<IMessage>().ToList());
-                }
-
-                foreach (var message in newMessages)
-                {
-                    message.Status = MessageStatus.Scaned;
-                }
-
-                context.SaveChanges();
+                ItemsEnqued(_messageDataService.GetAllMessages());
             }
+
+            _messageDataService.MarkNewMessageAsScaned();
         }
 
         public event Action<List<IMessage>> ItemsEnqued;
