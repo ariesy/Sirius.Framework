@@ -9,7 +9,7 @@ using Sirius.Common.Ioc;
 
 namespace Sirius.Messaging
 {
-    public class MessageQueue:IMessageQueue
+    public class MessageQueue
     {
         private IMessageDataService _messageDataService;
 

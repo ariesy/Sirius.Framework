@@ -11,7 +11,7 @@ using System.Timers;
 
 namespace Sirius.Messaging
 {
-    public class MessageQueueServer : IMessageQueueServer
+    public class MessageQueueServer
     {
         private IMessageDataService _messageDataService;
 
