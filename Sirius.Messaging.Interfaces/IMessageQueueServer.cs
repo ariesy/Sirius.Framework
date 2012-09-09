@@ -10,5 +10,9 @@ namespace Sirius.Messaging.Interfaces
         void Start();
 
         event Action<List<IMessage>> ItemsEnqued;
+
+        event Action<List<IMessage>> ItemDequeued;
+
+        void Stop();
     }
 }

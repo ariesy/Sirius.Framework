@@ -11,5 +11,7 @@ namespace Sirius.Messaging.Interfaces
 
         public const string Scaned = "Scaned";
 
+        public const string Deleted = "Deleted";
+
     }
 }

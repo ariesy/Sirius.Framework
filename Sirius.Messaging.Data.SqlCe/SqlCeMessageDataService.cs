@@ -14,7 +14,7 @@ namespace Sirius.Messaging.Data.SqlCe
         {
             using (var context = new MessageQueueEntities())
             {
-                return context.Messages.Where(m => m.Domain == domain).ToList().Cast<IMessage>().ToList();
+                return context.Messages.Where(m => m.Domain == domain && m.Status != MessageStatus.Deleted ).ToList().Cast<IMessage>().ToList();
             }
         }
 
@@ -61,10 +61,33 @@ namespace Sirius.Messaging.Data.SqlCe
                 var dbMessages = context.Messages.Where(m => m.Domain == dm && m.Value == messageBody ).ToList();
                 foreach(var dbMessage in dbMessages)
                 {
-                    context.Messages.DeleteObject(dbMessage);
+                    dbMessage.Status = MessageStatus.Deleted;
                 }
 
                 context.SaveChanges();
+            }
+        }
+
+
+        public void Clear(string domain = null)
+        {
+            using(var context = new MessageQueueEntities())
+            {
+                foreach (var message in context.Messages.Where(m=>m.Domain == domain))
+                {
+                    context.Messages.DeleteObject(message);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+
+        public List<IMessage> GetRemovedMessages(string _domain = null)
+        {
+            using (var context = new MessageQueueEntities())
+            {
+                return context.Messages.Where(m => m.Status == MessageStatus.Deleted).ToList().Cast<IMessage>().ToList();
             }
         }
     }

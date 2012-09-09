@@ -15,5 +15,9 @@ namespace Sirius.Messaging.Data.Interfaces
         void AddMessage(IMessage message);
 
         void RemoveMessage(IMessage message);
+
+        void Clear(string domain = null);
+
+        List<IMessage> GetRemovedMessages(string _domain = null);
     }
 }

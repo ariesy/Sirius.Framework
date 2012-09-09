@@ -39,9 +39,23 @@ namespace Sirius.Messaging
                 ItemsEnqued(_messageDataService.GetAllMessages(_domain));
             }
 
+            if (ItemDequeued != null)
+            {
+                ItemDequeued(_messageDataService.GetRemovedMessages(_domain));
+            }
+
             _messageDataService.MarkNewMessageAsScaned(_domain);
         }
 
         public event Action<List<IMessage>> ItemsEnqued;
+
+
+        public event Action<List<IMessage>> ItemDequeued;
+
+
+        public void Stop()
+        {
+            _messageDataService.Clear(_domain);
+        }
     }
 }
