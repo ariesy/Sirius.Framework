@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sirius.Messaging.Interfaces
+namespace Sirius.Messaging
 {
     public interface IMessageQueueServer
     {

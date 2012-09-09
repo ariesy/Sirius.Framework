@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sirius.Common.Extensions;
-using Sirius.Messaging.Data.Interfaces;
-using Sirius.Messaging.Interfaces;
+using Sirius.Messaging.Data;
+using Sirius.Messaging;
 
 namespace Sirius.Messaging.Data.SqlCe
 {

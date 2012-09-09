@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Sirius.Messaging.Interfaces;
 
-namespace Sirius.Messaging.Data.Interfaces
+namespace Sirius.Messaging.Data
 {
     public interface IMessageDataService
     {
