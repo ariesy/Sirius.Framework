@@ -18,5 +18,11 @@ namespace Sirius.Messaging.Interfaces
             get;
             set;
         }
+
+        public string Domain
+        {
+            get;
+            set;
+        }
     }
 }

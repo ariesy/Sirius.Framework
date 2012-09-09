@@ -10,5 +10,7 @@ namespace Sirius.Messaging.Interfaces
         object MessageBody { get; set; }
 
         string Status { get; set; }
+
+        string Domain { get; set; }
     }
 }

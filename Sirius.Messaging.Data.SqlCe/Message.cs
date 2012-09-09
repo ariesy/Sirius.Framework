@@ -36,6 +36,12 @@ namespace Sirius.Messaging.Data.SqlCe
             get;
             set;
         }
+    
+        public virtual string Domain
+        {
+            get;
+            set;
+        }
 
         #endregion
     }

@@ -15,8 +15,11 @@ namespace Sirius.Messaging
     {
         private IMessageDataService _messageDataService;
 
-        public MessageQueueServer()
+        private string _domain = null;
+
+        public MessageQueueServer(string domain = null)
         {
+            _domain = domain;
             _messageDataService = IocContainer.Current.Resolve<IMessageDataService>();
         }
         
@@ -33,10 +36,10 @@ namespace Sirius.Messaging
         {
             if (ItemsEnqued != null)
             {
-                ItemsEnqued(_messageDataService.GetAllMessages());
+                ItemsEnqued(_messageDataService.GetAllMessages(_domain));
             }
 
-            _messageDataService.MarkNewMessageAsScaned();
+            _messageDataService.MarkNewMessageAsScaned(_domain);
         }
 
         public event Action<List<IMessage>> ItemsEnqued;

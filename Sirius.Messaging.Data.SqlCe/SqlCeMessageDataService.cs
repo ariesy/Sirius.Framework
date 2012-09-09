@@ -10,19 +10,19 @@ namespace Sirius.Messaging.Data.SqlCe
 {
     class SqlCeMessageDataService : IMessageDataService
     {
-        public List<IMessage> GetAllMessages()
+        public List<IMessage> GetAllMessages(string domain = null)
         {
             using (var context = new MessageQueueEntities())
             {
-                return context.Messages.ToList().Cast<IMessage>().ToList();
+                return context.Messages.Where(m => m.Domain == domain).ToList().Cast<IMessage>().ToList();
             }
         }
 
-        public void MarkNewMessageAsScaned()
+        public void MarkNewMessageAsScaned(string domain = null)
         {
             using (var context = new MessageQueueEntities())
             {
-                var newMessages = context.Messages.Where(m => m.Status == MessageStatus.New).ToList();
+                var newMessages = context.Messages.Where(m => m.Domain == domain && m.Status == MessageStatus.New).ToList();
                 foreach (var message in newMessages)
                 {
                     message.Status = MessageStatus.Scaned;
@@ -45,6 +45,7 @@ namespace Sirius.Messaging.Data.SqlCe
                 dbMessage.Id = maxId + 1;
                 dbMessage.Value = message.MessageBody.ToStringEx();
                 dbMessage.Status = MessageStatus.New;
+                dbMessage.Domain = message.Domain;
                 context.Messages.AddObject(dbMessage);
                 context.SaveChanges();
 
@@ -53,9 +54,11 @@ namespace Sirius.Messaging.Data.SqlCe
 
         public void RemoveMessage(IMessage message)
         {
+            var dm = message.Domain;
+            var messageBody = message.MessageBody.ToStringEx();
             using (var context = new MessageQueueEntities())
             {
-                var dbMessages = context.Messages.Where(m => m.Value == message.MessageBody.ToStringEx(true)).ToList();
+                var dbMessages = context.Messages.Where(m => m.Domain == dm && m.Value == messageBody ).ToList();
                 foreach(var dbMessage in dbMessages)
                 {
                     context.Messages.DeleteObject(dbMessage);

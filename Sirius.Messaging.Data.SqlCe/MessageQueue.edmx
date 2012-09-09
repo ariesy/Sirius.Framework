@@ -2,19 +2,19 @@
 <edmx:Runtime>
 <edmx:StorageModels>
 <Schema Namespace="MessageQueueModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="MessageQueueModelStoreContainer">
-    <EntitySet Name="Message" EntityType="MessageQueueModel.Store.Message" store:Type="Tables" />
-  </EntityContainer>
-  <EntityType Name="Message">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" Nullable="false" />
-    <Property Name="Value" Type="nvarchar" />
-    <Property Name="Status" Type="nvarchar" MaxLength="10" />
-  </EntityType>
-</Schema>
-</edmx:StorageModels>
+        <EntityContainer Name="MessageQueueModelStoreContainer">
+          <EntitySet Name="Message" EntityType="MessageQueueModel.Store.Message" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" />
+          <Property Name="Status" Type="nvarchar" MaxLength="10" />
+          <Property Name="Domain" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
 <edmx:ConceptualModels>
 <Schema Namespace="MessageQueueModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="MessageQueueEntities" annotation:LazyLoadingEnabled="true">
@@ -27,6 +27,7 @@
     <Property Name="Id" Type="Int64" Nullable="false" />
     <Property Name="Value" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
     <Property Name="Status" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="Domain" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
 </edmx:ConceptualModels>
@@ -36,7 +37,8 @@
     <EntitySetMapping Name="Messages">
       <EntityTypeMapping TypeName="MessageQueueModel.Message">
         <MappingFragment StoreEntitySet="Message">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Domain" ColumnName="Domain" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
