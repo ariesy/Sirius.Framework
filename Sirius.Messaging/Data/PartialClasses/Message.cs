@@ -7,7 +7,7 @@ using Sirius.Common.Extensions;
 
 namespace Sirius.Messaging.Data.SqlCe
 {
-    public partial class Message : IMessage
+    internal partial class Message : IMessage
     {
         public object MessageBody
         {

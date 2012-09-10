@@ -15,7 +15,7 @@ using System.Collections.Specialized;
 
 namespace Sirius.Messaging.Data.SqlCe
 {
-    public partial class Message
+    internal partial class Message
     {
         #region Primitive Properties
     

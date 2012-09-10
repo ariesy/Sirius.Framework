@@ -13,7 +13,7 @@ using System.Data.EntityClient;
 
 namespace Sirius.Messaging.Data.SqlCe
 {
-    public partial class MessageQueueEntities : ObjectContext
+    internal partial class MessageQueueEntities : ObjectContext
     {
         public const string ConnectionString = "name=MessageQueueEntities";
         public const string ContainerName = "MessageQueueEntities";
