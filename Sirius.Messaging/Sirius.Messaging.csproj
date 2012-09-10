@@ -48,20 +48,20 @@
     <Compile Include="Data\IMessageDataService.cs" />
     <Compile Include="Data\PartialClasses\Message.cs" />
     <Compile Include="Data\SqlCe\Message.cs">
-      <DependentUpon>MessageQueue.tt</DependentUpon>
+      <DependentUpon>MessageQueueEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\SqlCe\MessageQueue.Context.cs">
-      <DependentUpon>MessageQueue.Context.tt</DependentUpon>
+    <Compile Include="Data\SqlCe\MessageQueueEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>MessageQueueEntity.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\SqlCe\MessageQueue.cs">
-      <DependentUpon>MessageQueue.tt</DependentUpon>
+    <Compile Include="Data\SqlCe\MessageQueueEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>MessageQueueEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\SqlCe\MessageQueue.Designer.cs">
-      <DependentUpon>MessageQueue.edmx</DependentUpon>
+    <Compile Include="Data\SqlCe\MessageQueueEntity.Designer.cs">
+      <DependentUpon>MessageQueueEntity.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -80,17 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Data\SqlCe\MessageQueue.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessageQueue.Context.cs</LastGenOutput>
-    </None>
-    <EntityDeploy Include="Data\SqlCe\MessageQueue.edmx">
+    <EntityDeploy Include="Data\SqlCe\MessageQueueEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MessageQueue.Designer.cs</LastGenOutput>
+      <LastGenOutput>MessageQueueEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Data\SqlCe\MessageQueue.tt">
+    <None Include="Data\SqlCe\MessageQueueEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessageQueue.cs</LastGenOutput>
+      <LastGenOutput>MessageQueueEntity.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Data\SqlCe\MessageQueueEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessageQueueEntity.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
