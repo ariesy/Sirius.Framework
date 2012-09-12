@@ -20,7 +20,7 @@
   <EntityContainer Name="MessageQueueEntities" annotation:LazyLoadingEnabled="true" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
     <EntitySet Name="Messages" EntityType="MessageQueueModel.Message" />
   </EntityContainer>
-  <EntityType Name="Message" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+  <EntityType Name="Message" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
